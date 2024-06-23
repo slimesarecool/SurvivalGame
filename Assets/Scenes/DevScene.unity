@@ -752,8 +752,7 @@ MonoBehaviour:
   speed: 12
   gravity: -9.81
   jumpHeight: 3
-  acceleration: 0
-  accelerationLimit: 1
+  accelerationLimit: 0.5
   groundCheck: {fileID: 790562918}
   groundDistance: 0.4
   groundMask:
