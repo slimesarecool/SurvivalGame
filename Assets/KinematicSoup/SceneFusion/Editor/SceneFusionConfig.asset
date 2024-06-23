@@ -35,4 +35,4 @@ MonoBehaviour:
     MaxChangeCheckRate: 0
     PropertySyncRate: 10
     TerrainSyncRate: 2
-  m_projectId: -1
+  m_projectId: 9007
