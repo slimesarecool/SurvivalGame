@@ -122,6 +122,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &138811388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138811390}
+  - component: {fileID: 138811389}
+  m_Layer: 0
+  m_Name: RockObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &138811389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138811388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0338829e852684b9a6a9e7f09df0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalObject: {fileID: 7292485488951059832, guid: d3d8724a7907a4143ac5be19ccb10843,
+    type: 3}
+  destroyedObject: {fileID: 7167538560626589990, guid: 9406dec887391a94a9be02a94ec046ef,
+    type: 3}
+  minExplosionForce: -375
+  maxExplosionForce: 375
+  explosionRadius: 0
+  explosionModifier: 12
+--- !u!4 &138811390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138811388}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.46, y: 1.8464978, z: -1.9232719}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1248823967}
   speed: 12
-  gravity: -9.81
+  gravity: -24.525
   jumpHeight: 3
   accelerationLimit: 0.5
   groundCheck: {fileID: 790562918}
@@ -1008,3 +1060,4 @@ SceneRoots:
   - {fileID: 1248823966}
   - {fileID: 374661833}
   - {fileID: 340159434}
+  - {fileID: 138811390}
