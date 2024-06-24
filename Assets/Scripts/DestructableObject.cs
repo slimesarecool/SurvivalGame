@@ -18,6 +18,9 @@ public class DestructableObject : MonoBehaviour {
     [Range(0f, 100f)]
     public float explosionModifier = 3f;
 
+    [Range(0f, 20f)]
+    public float fragScaleFactor = 4f;
+
     GameObject currentObject;
 
     void Start() {
@@ -26,7 +29,7 @@ public class DestructableObject : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.E)) {
-            Destroy();
+            DestroyObject();
         }
 
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -35,25 +38,45 @@ public class DestructableObject : MonoBehaviour {
     }
 
     void Create(GameObject obj) {
+        Destroy(currentObject);
         currentObject = GameObject.Instantiate(obj);
         currentObject.transform.position = transform.position;
         currentObject.transform.parent = transform;
     }
 
-    void Destroy() {
-        Destroy(currentObject);
-
+    void DestroyObject() {
         Create(destroyedObject);
 
-        foreach (Transform transform in currentObject.transform) {
-            Rigidbody rb = transform.GetComponent<Rigidbody>();
+        foreach (Transform t in currentObject.transform) {
+            Rigidbody rb = t.GetComponent<Rigidbody>();
 
             if (rb != null) rb.AddExplosionForce(Random.Range(minExplosionForce, maxExplosionForce), transform.position, explosionRadius, explosionModifier);
+
+            StartCoroutine(Shrink(t));
         }
     }
 
     void Reset() {
-        Destroy(currentObject);
         Create(originalObject);
+    }
+
+    IEnumerator Shrink(Transform t) {
+        yield return new WaitForSeconds(10f);
+        
+        if (t == null) yield break;
+
+        Vector3 newScale = t.localScale;
+        Color col = t.gameObject.GetComponent<MeshRenderer>().material.color;
+
+        while (col.a >= 0 && newScale.x >= 0) {
+            newScale -= new Vector3(fragScaleFactor, fragScaleFactor, fragScaleFactor);
+            col.a -= 0.04f;
+            t.localScale = newScale;
+            t.gameObject.GetComponent<MeshRenderer>().material.color = col;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        Destroy(t.gameObject);
     }
 }
